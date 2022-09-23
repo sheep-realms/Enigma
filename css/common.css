@@ -158,7 +158,8 @@ h3 {
 
 .form-io textarea {
     flex: 1;
-    height: 250px;
+    height: calc(100vh - 530px);
+    min-height: 100px;
     resize: none;
     box-sizing: border-box;
     padding: 10px;
