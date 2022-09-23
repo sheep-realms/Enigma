@@ -142,6 +142,20 @@ class Enigma {
         return this.rotorsLocation;
     }
 
+    // 由字符设置转子位置
+    setLocation4Chars(...chars) {
+        let location = []
+        for (let i = 0; i < chars.length; i++) {
+            if (/[A-Z]/.test(chars[i])) {
+                location.push(this.toNum(chars[i]));
+            } else {
+                return this.error(`Invalid character.`);
+            }
+        }
+        this.setLocation(...location);
+        return this.rotorsLocation;
+    }
+
     // 重置转子位置
     resetLocation() {
         this.rotorsLocation.fill(0);

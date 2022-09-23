@@ -5,12 +5,57 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Enigma</title>
+    <link rel="stylesheet" href="css/common.css">
+    <script src="js/jquery-1.7.2.min.js"></script>
     <script src="js/Enigma.js"></script>
 </head>
 <body>
-    
-    <script>
-        let enigma = new Enigma();
-    </script>
+    <div id="header">
+        <div class="body">
+            <h1>ENIGMA</h1>
+        </div>
+    </div>
+    <div id="body">
+        <div id="menu">
+            <div class="menu-item menu-item-selected">Default Config</div>
+            <div class="menu-item menu-item-disabled">Empty Config</div>
+        </div>
+        <div id="content">
+            <div id="enigma">
+                <h3>Rotors Location</h3>
+                <div class="form-rotors-location">
+                    <input type="text" class="rotors-location" id="rotors-location-0">
+                    <input type="text" class="rotors-location" id="rotors-location-1">
+                    <input type="text" class="rotors-location" id="rotors-location-2">
+                </div>
+                <h3>Input & Output</h3>
+                <div class="form-io">
+                    <textarea id="form-input"></textarea>
+                    <textarea id="form-output"></textarea>
+                </div>
+                <div class="form-btn">
+                    <button id="form-run">RUN >></button>
+                </div>
+            </div>
+            <div id="enigma-msg">Loading...</div>
+        </div>
+    </div>
+
+    <div id="footer">
+        <div class="body">
+            <div class="footer-left"></div>
+            <div class="footer-right">
+                <div>
+                    <a href="https://github.com/sheep-realms" target="_blank">Sheep-realms</a> | 
+                    <a href="https://github.com/sheep-realms/Enigma" target="_blank">GitHub</a>
+                </div>
+                <div>
+                    <a href="https://en.wikipedia.org/wiki/Enigma_machine" target="_blank">What is Enigma Machine?</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/common.js"></script>
 </body>
 </html>
