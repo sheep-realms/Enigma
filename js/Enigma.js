@@ -1,6 +1,6 @@
 class Enigma {
     constructor() {
-        // 字母表
+        // 字母表（接线板）
         this.char = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
         // 转子
         this.rotors = [
@@ -14,6 +14,7 @@ class Enigma {
         this.reflector = [6, 9, 25, 17, 15, 8, 0, 10, 5, 1, 7, 22, 18, 24, 20, 4, 21, 3, 12, 23, 14, 16, 11, 19, 13, 2];
     }
 
+    // 转换为字符
     toChar(value) {
         if (!isNaN(value)) {
             if (value < 26) {
@@ -26,6 +27,7 @@ class Enigma {
         }
     }
 
+    // 转换为数字
     toNum(value) {
         value = value.toUpperCase().substr(0,1);
         if (/[A-Z]/.test(value)) {
@@ -35,6 +37,7 @@ class Enigma {
         }
     }
 
+    // 计算转子走线
     calcRotors(value, value2, reflex=false) {
         if (reflex) {
             value -= value2;
@@ -46,20 +49,11 @@ class Enigma {
         return value;
     }
 
-    getRotorsNav(value) {
-        let x = [];
-        x = x.concat(this.rotorsLocation);
-        for(let i = 0; i < x.length; i++) {
-            x[i] = this.calcRotors(x[i], value);
-        }
-        return x;
-    }
-
+    // 输入字符
     charIn(value) {
         value = value.toUpperCase().substr(0,1);
         if (/[A-Z]/.test(value)) {
             let num = this.toNum(value);
-            let rotorsNav = this.getRotorsNav(num);
             let x = num;
 
             // 进入转子
@@ -81,6 +75,7 @@ class Enigma {
         }
     }
 
+    // 生成替换表
     charInTest() {
         let list = [];
         this.char.forEach(e => {
@@ -89,6 +84,7 @@ class Enigma {
         return list;
     }
 
+    // 拨动转子
     rotorsNext() {
         this.rotorsLocation[0]++;
         for (let i = 0; i < this.rotorsLocation.length; i++) {
@@ -102,6 +98,7 @@ class Enigma {
         return this.rotorsLocation;
     }
 
+    // 加密&解密字符串
     translate(text, rotors=this.rotorsLocation) {
         let output = '';
         this.rotorsLocation = rotors;
