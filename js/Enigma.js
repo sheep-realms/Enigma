@@ -103,8 +103,9 @@ class Enigma {
         let output = '';
         this.rotorsLocation = rotors;
         for (let i = 0; i < text.length; i++) {
-            output += this.charIn(text.substr(i, 1));
-            this.rotorsNext();
+            let c = this.charIn(text.substr(i, 1));
+            output += c;
+            if (text.substr(i, 1) != c) this.rotorsNext();
         }
 
         return output;
