@@ -14,6 +14,12 @@ class Enigma {
         this.reflector = [6, 9, 25, 17, 15, 8, 0, 10, 5, 1, 7, 22, 18, 24, 20, 4, 21, 3, 12, 23, 14, 16, 11, 19, 13, 2];
     }
 
+    // 报错
+    error(messgae='undefined', type='Logic Error') {
+        console.error(`[Enigma] ${type}: ${messgae}`);
+        return;
+    }
+
     // 转换为字符
     toChar(value) {
         if (!isNaN(value)) {
@@ -109,5 +115,42 @@ class Enigma {
         }
 
         return output;
+    }
+
+    // 设置转子
+    setRotors(rotors) {
+        this.rotors = rotors;
+        return this.rotors;
+    }
+
+    // 设置转子位置
+    setLocation(...value) {
+        if (value.length != this.rotors.length) {
+            return this.error('value.length != this.rotors.length');
+        }
+
+        for (let i = 0; i < value.length; i++) {
+            if (value[i] >= this.rotors[i].length) {
+                return this.error(`value[${i}] >= this.rotors[${i}].length`);
+            }
+            if (value[i] < 0) {
+                return this.error(`value[${i}] < 0`);
+            }
+        }
+
+        this.rotorsLocation = value;
+        return this.rotorsLocation;
+    }
+
+    // 重置转子位置
+    resetLocation() {
+        this.rotorsLocation.fill(0);
+        return this.rotorsLocation;
+    }
+
+    // 设置反射器
+    setReflector(reflector) {
+        this.reflector = reflector;
+        return this.reflector;
     }
 }
